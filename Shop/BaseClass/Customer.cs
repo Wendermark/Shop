@@ -11,7 +11,7 @@ namespace Shop.BaseClass
     {
         public Customer(string name = "Unknown name") => (Name, Id) = (name, Guid.NewGuid());
 
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public Guid Id { get; private set; }
 
