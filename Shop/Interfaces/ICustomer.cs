@@ -8,6 +8,7 @@ namespace Shop.Interfaces
 {
     interface ICustomer
     {
+        public Name { get; }
         void Pay(int sum);
     }
 }
