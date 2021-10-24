@@ -12,7 +12,6 @@ namespace Shop.Interfaces
         public bool AddProduct(Product product);
         public bool RemoveProduct(Product product);
         public void Examine();
-        public void ProductsByCategory<T>() where T : Category;
         public bool IsContainingCategory(Category category);
     }
 }

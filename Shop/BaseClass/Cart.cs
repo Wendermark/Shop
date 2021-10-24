@@ -49,15 +49,6 @@ namespace Shop.BaseClass
                 Console.WriteLine("В корзине нет продуктов!");
         }
 
-        public void ProductsByCategory<T>() where T : Category
-        {
-            foreach (Product product in Products)
-            {
-                if (product is T)
-                    Console.WriteLine(product);
-            }
-        }
-
         public bool IsContainingCategory(Category category)
         {
             foreach (Product product in Products)
