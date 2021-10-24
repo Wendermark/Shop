@@ -7,11 +7,15 @@ using Shop.Interfaces;
 
 namespace Shop.BaseClass
 {
-    class Customer : ICustomer
+    class Customer : ICustomer, IEquatable<Customer>
     {
         public Customer(string name = "Unknown name") => (Name, Id) = (name, Guid.NewGuid());
+
         public string Name { get; private set; }
+
         public Guid Id { get; private set; }
+
+        public bool Equals(Customer other) => Id.Equals(other.Id);
 
         public void Pay(int sum) => Console.WriteLine($"{Name} заплатил {sum} тугриков");
 
