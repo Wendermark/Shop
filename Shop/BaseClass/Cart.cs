@@ -53,7 +53,7 @@ namespace Shop.BaseClass
         {
             foreach (Product product in Products)
             {
-                if (product.Category.Name.Equals(category.Name))
+                if (product.Category.Name.ToLower().Equals(category.Name.ToLower()))
                     return true;
             }
             return false;
