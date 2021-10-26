@@ -10,7 +10,6 @@ namespace Shop.Interfaces
     interface ICart
     {
         public bool AddProduct(Product product);
-        public bool RemoveProduct(Product product);
         public void Examine();
         public bool IsContainingCategory(Category category);
     }

@@ -8,14 +8,13 @@ using Shop.Interfaces;
 
 namespace Shop.BaseClass
 {
-    class CustomersCollection<T> : IEnumerable, ICustomersCollection<T> where T : ICustomer
+    class CustomCollection<T> : IEnumerable, ICustomersCollection<T> where T : ICustomer
     {
-        public CustomersCollection()
+        public CustomCollection()
         {
             List = new Dictionary<T, ICart>();
             Count = 0;
         }
-
         public Dictionary<T, ICart> List { get; private set; }
 
         public int Count { get; private set; }
@@ -65,29 +64,9 @@ namespace Shop.BaseClass
 
             ICart cart = GetCart(customer);
 
-            if (cart is null)
-                Console.WriteLine("Такого покупателя нет!");
-            else
-                Console.WriteLine(cart.AddProduct(product) ? "Продукт успешно добавлен" : "Такой продукт уже есть");
+            Console.WriteLine(cart.AddProduct(product) ? "Продукт успешно добавлен" : "Такой продукт уже есть");
         }
 
-        public ICart GetCart(T customer)
-        {
-            if (!(customer is null) | List.TryGetValue(customer, out ICart cart))
-            {
-                return cart;
-            }
-            else return null;
-        }
-
-        public void RemoveProduct(T customer, Product product)
-        {
-            ICart cart = GetCart(customer);
-
-                if (cart is null)
-                    Console.WriteLine("Такого покупателя нет!");
-                else
-                    Console.WriteLine(cart.RemoveProduct(product) ? "Продукт успешно удалён" : "Такого продукта нет!");
-        }
+        public ICart GetCart(T customer) => (customer != null && List.TryGetValue(customer, out ICart cart)) ? cart : null;
     }
 }

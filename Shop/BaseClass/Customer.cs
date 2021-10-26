@@ -20,5 +20,9 @@ namespace Shop.BaseClass
         public void Pay(int sum) => Console.WriteLine($"{Name} заплатил {sum} тугриков");
 
         public override string ToString() => $"Имя покупателя - {Name}, уникальный id = {Id}";
+
+        public override bool Equals(object obj) => Equals((Customer)obj);
+
+        public override int GetHashCode() => Id.GetHashCode();
     }
 }

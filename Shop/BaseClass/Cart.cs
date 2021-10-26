@@ -26,17 +26,6 @@ namespace Shop.BaseClass
             return false;
         }
 
-        public bool RemoveProduct(Product product)
-        {
-            if (product != null && Products.Contains(product))
-            {
-                Products.Remove(product);
-                Count--;
-                return true;
-            }
-            return false;
-        }
-
         public void Examine()
         {
             if (Products.Count > 0)

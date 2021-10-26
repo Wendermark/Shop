@@ -17,8 +17,6 @@ namespace Shop.Interfaces
 
         public void GetCustomerByCategory(Category category);
 
-        public void RemoveProduct(T customer, Product product);
-
         public void AddProduct(T customer, Product product);
     }
 }

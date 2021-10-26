@@ -12,7 +12,7 @@ namespace Shop
 
             var secondCustomer = new Customer("Женя");
 
-            var collection = new CustomersCollection<Customer>();
+            ICustomersCollection<Customer> collection = new CustomCollection<Customer>();
 
             collection.AddCustomer(firstCustomer);
 
