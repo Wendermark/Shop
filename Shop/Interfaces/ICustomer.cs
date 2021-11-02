@@ -9,6 +9,7 @@ namespace Shop.Interfaces
     interface ICustomer
     {
         public string Name { get; }
+        public Guid Id { get; }
         void Pay(int sum);
     }
 }

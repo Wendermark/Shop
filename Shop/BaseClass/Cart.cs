@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,5 +51,10 @@ namespace Shop.BaseClass
 
         public override string ToString() => $"В корзине {Count} продуктов";
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            foreach (var produxt in Products)
+                yield return produxt;
+        }
     }
 }

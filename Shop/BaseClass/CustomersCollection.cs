@@ -33,13 +33,12 @@ namespace Shop.BaseClass
 
         public void ExamineCustomer(T customer)
         {
-            ICart cart = GetCart(customer);
-
-            if (cart is null)
-                Console.WriteLine("Такого покупателя нет!");
-            else
+            if (List.ContainsKey(customer))
             {
+                ICart cart = GetCart(customer);
+
                 Console.WriteLine(customer);
+
                 cart.Examine();
             }
         }
