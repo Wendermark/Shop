@@ -8,30 +8,30 @@ using Shop.Interfaces;
 
 namespace Shop.BaseClass
 {
-    class CustomCollection<T> : IEnumerable, ICustomersCollection<T> where T : ICustomer
+    class CustomerCollection : IEnumerable, ICustomerCollection<ICustomer>
     {
-        public CustomCollection()
+        public CustomerCollection()
         {
-            List = new Dictionary<T, ICart>();
+            List = new Dictionary<ICustomer, ICart>();
             Count = 0;
         }
-        public Dictionary<T, ICart> List { get; private set; }
+        public Dictionary<ICustomer, ICart> List { get; private set; }
 
         public int Count { get; private set; }
 
         public IEnumerator GetEnumerator()
         {
-            foreach (KeyValuePair<T, ICart> item in List)
+            foreach (KeyValuePair<ICustomer, ICart> item in List)
                 yield return item.Key;
         }
 
-        public void AddCustomer(T customer)
+        public void AddCustomer(ICustomer customer)
         {
             if (!(customer is null))
                 List.TryAdd(customer, new Cart());
         }
 
-        public void ExamineCustomer(T customer)
+        public void ExamineCustomer(ICustomer customer)
         {
             if (List.ContainsKey(customer))
             {
@@ -48,7 +48,7 @@ namespace Shop.BaseClass
             if (!(category is null))
             {
                 Console.WriteLine($"Покупатели которые имеют в корзине продукт категории {category.Name}:");
-                foreach (KeyValuePair<T, ICart> customer in List)
+                foreach (KeyValuePair<ICustomer, ICart> customer in List)
                 {
                     if (customer.Value.IsContainingCategory(category))
                         Console.WriteLine(customer.Key);
@@ -56,7 +56,7 @@ namespace Shop.BaseClass
             }
         }
 
-        public void AddProduct(T customer, Product product)
+        public void AddProduct(ICustomer customer, Product product)
         {
             if (!List.ContainsKey(customer))
                 AddCustomer(customer);
@@ -66,6 +66,6 @@ namespace Shop.BaseClass
             Console.WriteLine(cart.AddProduct(product) ? "Продукт успешно добавлен" : "Такой продукт уже есть");
         }
 
-        public ICart GetCart(T customer) => (customer != null && List.TryGetValue(customer, out ICart cart)) ? cart : null;
+        public ICart GetCart(ICustomer customer) => (customer != null && List.TryGetValue(customer, out ICart cart)) ? cart : null;
     }
 }

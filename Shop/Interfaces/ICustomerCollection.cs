@@ -7,7 +7,7 @@ using Shop.BaseClass;
 
 namespace Shop.Interfaces
 {
-    interface ICustomersCollection<T>
+    interface ICustomerCollection<T>
     {
         public ICart GetCart(T customer);
 
